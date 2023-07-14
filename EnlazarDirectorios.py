@@ -23,11 +23,11 @@ def DesenlazarDirectorio(programa):
     comando = f"unlink {ruta_config}"
     resultado = os.system(comando)
 
-programas = ["qtile", "dunst", "picom", "nvim", "alacritty"]
+programas = ["qtile", "dunst", "picom","nvim" "alacritty"]
 
 
 for i in programas:
-    print(i)
+    EnlazarDirectorio(i)
 
 
 
