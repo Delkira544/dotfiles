@@ -22,6 +22,7 @@ ruled.client.connect_signal("request::rules", function()
 			class = {
 				"Arandr",
 				"Blueman-manager",
+				"Blueberry.py",
 				"Gpick",
 				"Kruler",
 				"Sxiv",
@@ -41,14 +42,23 @@ ruled.client.connect_signal("request::rules", function()
 				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
-		properties = { floating = true },
+		properties = {
+			floating = true,
+			callback = function(c)
+				local screen_geometry = awful.screen.focused().geometry
+				c.width = screen_geometry.width / 2
+				c.height = screen_geometry.height / 2
+				c.x = (screen_geometry.width - c.width) / 2
+				c.y = (screen_geometry.height - c.height) / 2
+			end,
+		},
 	})
 
 	-- Add titlebars to normal clients and dialogs
 	ruled.client.append_rule({
 		id = "titlebars",
 		rule_any = { type = { "normal", "dialog" } },
-		properties = { titlebars_enabled = true },
+		properties = { titlebars_enabled = true, placement = awful.placement.centered },
 	})
 
 	-- Set Firefox to always map on the tag named '2' on screen 1.
@@ -106,5 +116,10 @@ ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule({
 		rule = { class = "Thunar" },
 		properties = { tag = "4", maximized = false },
+	})
+
+	ruled.client.append_rule({
+		rule_any = { class = { "Emulator", "emulator" } },
+		properties = { floating = true, ontop = true },
 	})
 end)

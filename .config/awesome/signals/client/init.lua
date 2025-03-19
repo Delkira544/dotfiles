@@ -1,9 +1,28 @@
-local awful = require'awful'
-require'awful.autofocus'
-local wibox = require'wibox'
+local awful = require("awful")
+local beautiful = require("beautiful")
+require("awful.autofocus")
+local dpi = beautiful.xresources.apply_dpi
+local wibox = require("wibox")
 
-client.connect_signal('mouse::enter', function(c)
-   c:activate{context = 'mouse_enter', raise = false}
+client.connect_signal("mouse::enter", function(c)
+	c:activate({ context = "mouse_enter", raise = false })
+end)
+
+client.connect_signal("focus", function(c)
+	local clients = awful.screen.focused().clients
+	if #clients == 1 then
+		c.border_width = dpi(2)
+		c.border_color = beautiful.border_focus
+	else
+		c.border_width = beautiful.border_width
+		c.border_color = beautiful.border_focus
+	end
+end)
+
+-- Restaura el borde cuando una ventana pierde foco
+client.connect_signal("unfocus", function(c)
+	c.border_width = beautiful.border_width
+	c.border_color = beautiful.border_normal
 end)
 
 --[[
@@ -55,5 +74,4 @@ client.connect_signal('request::titlebars', function(c)
       layout = wibox.layout.align.horizontal,
    }
 end)
---]] 
-
+--]]

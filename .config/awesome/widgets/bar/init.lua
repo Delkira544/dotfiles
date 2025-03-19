@@ -103,6 +103,7 @@ end
 -- Importar
 _M.create_taglist = require("widgets/bar/taglist")
 _M.create_tasklist = require("widgets/bar/tasklist")
+local spotify_widget = require("modules.awesome-wm-widgets.spotify-widget.spotify")
 
 local theme = {}
 theme.bg_wibox = "#00000000"
@@ -138,6 +139,7 @@ function _M.create_wibox(s)
 				{
 					-- right widgets
 					layout = wibox.layout.fixed.horizontal,
+					spotify_widget(),
 					{
 						margins = { left = dpi(15), right = dpi(15) },
 						layout = wibox.container.margin,

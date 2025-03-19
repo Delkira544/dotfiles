@@ -57,8 +57,8 @@ theme.wallpaper = config_path .. "theme/wallpaper.png"
 
 -- Borders
 theme.border_width  = dpi(4)
-theme.border_focus  = theme.bg_focus
-theme.border_normal = theme.xcolor0
+theme.border_focus  = theme.xcolor3
+theme.border_normal = theme.xcolor9
 theme.border_marked = theme.bg_urgent
 
 
@@ -88,8 +88,8 @@ theme.tasklist_bg_minimize  = theme.xcolor0
 
 -- Notifications:
 theme.notification_font         = theme.font
-theme.notification_margin       = theme.useless_gap
-theme.notification_border_color = theme.xcolor1
+theme.notification_border_color = theme.xcolor3
+theme.notification_margin       = dpi(15)
 theme.notification_border_width = dpi(0)
 
 
@@ -138,7 +138,7 @@ theme.window_switcher_icon_width                        = dpi(30)
 
 
 theme.bg_systray = theme.xbackground
-theme.systray_icon_spacing = dpi(3)
+theme.systray_icon_spacing = dpi(4)
 theme.bg_wibox = "#00000000"
 
 -- Generate Awesome icon:
